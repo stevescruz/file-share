@@ -1,0 +1,54 @@
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 50%;
+  background-color: var(--main-bg-color);
+  margin: 8px auto;
+  padding: 12px;
+  border: 1px solid var(--main-font-color);
+  border-radius: 4px;
+}
+
+section > * + * {
+  margin-top: 12px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+form > * + * {
+  margin-top: 12px;
+}
+
+.input-grid {
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
+}
+
+.input-grid input {
+  width: 180px;
+  height: 25px;
+  margin-left: 8px;
+}
+
+form button {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.success {
+  color: darkgreen;
+  font-weight: 500;
+}
+
+.failure {
+  color: darkred;
+  font-weight: 500;
+}
