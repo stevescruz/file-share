@@ -19,7 +19,6 @@ const SERVER = {
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
 const PATHS = {
   toCssDir: join(__dirname, "../..", DIR.public, DIR.css),
   toJsDir: join(__dirname, "../..", DIR.public, DIR.js),
