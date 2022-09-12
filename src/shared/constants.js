@@ -17,6 +17,11 @@ const SERVER = {
   defaultTemplateEngine: "ejs",
 }
 
+/*
+  Workaround for __dirname is not defined when loading file as an ECMAScript module 
+  READ: https://stackoverflow.com/questions/64383909/dirname-is-not-defined-in-node-14-version
+  READ: https://github.com/nodejs/help/issues/2907#issuecomment-757446568
+*/
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const PATHS = {
