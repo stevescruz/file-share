@@ -1,4 +1,4 @@
-const DIR_CONSTANTS = {
+const DIR = {
   public: "/public",
   css: "/css",
   js: "/js",
@@ -6,19 +6,20 @@ const DIR_CONSTANTS = {
   views: "/views",
 };
 
-const SERVER_CONSTANTS = {
+const SERVER = {
   defaultTemplateEngine: "ejs",
 }
 
-const ROUTES_CONSTANTS = {
+const ROUTES = {
   files: "/files",
   upload: "/upload",
   download: "/download",
 }
 
-const VIEWS_CONSTANTS = {
+const VIEWS = {
   fileDownload: "filedownload",
   fileUpload: "fileupload",
+  shareLink: "sharelink"
 }
 
-export { DIR_CONSTANTS, SERVER_CONSTANTS, ROUTES_CONSTANTS, VIEWS_CONSTANTS };
+export { DIR, SERVER, ROUTES, VIEWS };
