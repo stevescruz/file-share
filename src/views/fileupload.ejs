@@ -1,48 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/global.css">
-  <link rel="stylesheet" href="/css/colors.css">
-  <link rel="stylesheet" href="/css/fileupload.css">
-  <title>Upload Files</title>
-</head>
-
-<body>
-  <section>
-    <h1>Upload files</h1>
-    <form action="/upload" method="post">
-      <p>Select the file you want to upload</p>
-      <div class="input-grid">
-        <label for="file">File:</label>
-        <input name="file" id="file" type="file">
-        <!-- <input name="file" id="file" type="file" multiple> -->
-      </div>
-      <div class="input-grid">
-        <label for="password"> Password:</label>
-        <input name="password" id="password" type="password" autocomplete="current-password">
-      </div>
-      <button type="submit">Share</button>
-    </form>
-  </section>
-  <% if (shareUrl) { %>
-    <section>
-      <% if (didUploadSucceed) { %>
-        <p class="success">Your file was uploaded successfully</p>
-        <div>
-          <a>
-            <%= shareUrl %>
-          </a>
-          <button>Copy Url</button>
-        </div>
-      <% } else { %>
-        <p class="failure">Error: your file was not uploaded</p>
-      <% } %>
-    </section>
-  <% } %>
-</body>
-
-</html>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/css/global.css">
+<link rel="stylesheet" href="/css/colors.css">
+<link rel="stylesheet" href="/css/fileupload.css">
+<title>Upload Files</title>
+<section>
+  <h1>Upload files</h1>
+  <form action="share-link" method="post" enctype="multipart/form-data">
+    <p>Select the file you want to upload</p>
+    <div class="input-grid">
+      <label for="file">File *</label>
+      <input name="file" id="file" title="Upload your file" type="file" accept=".png, .jpg, .jpeg" required>
+    </div>
+    <div class="input-grid">
+      <label for="password"> Password</label>
+      <input name="password" id="password" type="password" autocomplete="current-password">
+    </div>
+    <button type="submit">Share</button>
+  </form>
+</section>

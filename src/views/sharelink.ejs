@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/css/global.css">
+<link rel="stylesheet" href="/css/colors.css">
+<link rel="stylesheet" href="/css/fileupload.css">
+<title>Share Link</title>
+<section>
+  <% if (shareUrl) { %>
+    <p class="success">Your file was uploaded successfully</p>
+    <div>
+      <a>
+        <%= shareUrl %>
+      </a>
+      <button>Copy Url</button>
+    </div>
+  <% } else { %>
+    <p class="failure">Error: your file was not uploaded</p>
+  <% } %>
+</section>
