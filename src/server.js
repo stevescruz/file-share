@@ -9,7 +9,7 @@ import { DIR, PATHS, SERVER, ROUTES } from "./shared/constants.js";
 const app = express();
 const port = process.env.PORT;
 
-app.use(express.static(DIR.public));
+app.use(express.static(PATHS.toPublicDir));
 app.use(DIR.css, express.static(PATHS.toCssDir));
 app.use(DIR.js, express.static(PATHS.toJsDir));
 app.use(DIR.img, express.static(PATHS.toImgDir));

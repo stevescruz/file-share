@@ -10,6 +10,7 @@ const DIR = {
   css: "/css",
   js: "/js",
   img: "/img",
+  uploads: "/uploads",
   views: "/views",
 };
 
@@ -25,10 +26,11 @@ const SERVER = {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const PATHS = {
+  toPublicDir: join(__dirname, "../..", DIR.public),
   toCssDir: join(__dirname, "../..", DIR.public, DIR.css),
   toJsDir: join(__dirname, "../..", DIR.public, DIR.js),
   toImgDir: join(__dirname, "../..", DIR.public, DIR.img),
-  toUploadsDir: join(__dirname, "../..", DIR.public),
+  toUploadsDir: join(__dirname, "../..", DIR.public, DIR.uploads),
   toViewsDir: join(__dirname, "..", DIR.views)
 }
 
