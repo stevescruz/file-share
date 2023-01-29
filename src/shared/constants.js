@@ -10,6 +10,7 @@ const DIR = {
   css: "/css",
   js: "/js",
   img: "/img",
+  sounds: "/sounds",
   uploads: "/uploads",
   views: "/views",
 };
@@ -30,6 +31,7 @@ const PATHS = {
   toCssDir: join(__dirname, "../..", DIR.public, DIR.css),
   toJsDir: join(__dirname, "../..", DIR.public, DIR.js),
   toImgDir: join(__dirname, "../..", DIR.public, DIR.img),
+  toSoundsDir: join(__dirname, "../..", DIR.public, DIR.sounds),
   toUploadsDir: join(__dirname, "../..", DIR.public, DIR.uploads),
   toViewsDir: join(__dirname, "..", DIR.views)
 }

@@ -13,6 +13,7 @@ app.use(express.static(PATHS.toPublicDir));
 app.use(DIR.css, express.static(PATHS.toCssDir));
 app.use(DIR.js, express.static(PATHS.toJsDir));
 app.use(DIR.img, express.static(PATHS.toImgDir));
+app.use(DIR.sounds, express.static(PATHS.toSoundsDir));
 
 app.set("views", PATHS.toViewsDir);
 app.set("view engine", SERVER.defaultTemplateEngine);
