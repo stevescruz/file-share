@@ -1,4 +1,4 @@
-import getFileExtension from "./getFileExtension.js";
+import getFileExtension from "./getFileExtension";
 
 function fileFilter(req, file, callback) {
   const extension = ['.png', '.jpg', '.jpeg'].indexOf(getFileExtension(file.originalname)) >= 0;

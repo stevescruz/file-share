@@ -1,4 +1,4 @@
-import getFileExtension from "./getFileExtension.js";
+import getFileExtension from "./getFileExtension";
 
 function generateUniqueFilename(fileOriginalName, formFieldName) {
   const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);

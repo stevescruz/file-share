@@ -1,7 +1,7 @@
 import multer from "multer";
 
-import { PATHS } from "../shared/constants.js";
-import generateUniqueFilename from "./generateUniqueFilename.js";
+import { PATHS } from "../shared/constants";
+import generateUniqueFilename from "./generateUniqueFilename";
 
 const fileStorage = multer.diskStorage({
   destination: PATHS.toUploadsDir,

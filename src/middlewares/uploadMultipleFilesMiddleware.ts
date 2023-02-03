@@ -1,8 +1,8 @@
 import multer from "multer";
 
-import fileStorage from "../utils/fileStorage.js";
-import fileFilter from "../utils/fileFilter.js";
-import { FILE_STORAGE } from "../shared/constants.js";
+import fileStorage from "../utils/fileStorage";
+import fileFilter from "../utils/fileFilter";
+import { FILE_STORAGE } from "../shared/constants";
 
 const uploadMultipleFilesMiddleware = multer({
   storage: fileStorage,

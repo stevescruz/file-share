@@ -1,8 +1,13 @@
-import { APP, ROUTES, VIEWS } from "../shared/constants.js"
+import { Request, Response } from "express";
+import { APP, ROUTES, VIEWS } from "../shared/constants";
+
+interface IRequest extends Request {
+  file: Express.Multer.File;
+}
 
 class UploadFilesController {
-  async create(req, res) {
-    const { file } = req;
+  async create(req: Request, res: Response) {
+    const { file } = req as IRequest;
     // const { password } = req.body;
 
     console.log("file metadata:");
@@ -16,7 +21,7 @@ class UploadFilesController {
     });
   }
 
-  show(req, res) {
+  show(req: Request, res: Response) {
     res.render(VIEWS.fileUpload, {
       shareUrl: "null",
       didUploadSucceed: true,
