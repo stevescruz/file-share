@@ -5,8 +5,12 @@
   "main": "server.js",
   "scripts": {
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./src/server.js"
+    "clean": "rimraf dist",
+    "preserve": "npm run clean && npm run build",
+    "serve": "tsc -w && nodemon -w dist/server.js",
+    "prestart": "npm run clean && npm run build",
+    "start": "node dist/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "type": "module",
   "author": "",
