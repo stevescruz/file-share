@@ -1,6 +1,6 @@
 function copyToClipboard(text) {
   navigator.clipboard.writeText(text)
-    .then(successAlert, errorCallback);
+    .then(successAlert, errorAlert);
 }
 
 function successAlert() {
