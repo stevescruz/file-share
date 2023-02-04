@@ -1,27 +1,29 @@
-import { Database, verbose } from "sqlite3";
-import { FilesTableConstants } from "./databaseConstants";
-import { File } from "../models/File";
+import sqlite3 from "sqlite3";
+import { FilesTableConstants } from "./databaseConstants.js";
+import { File } from "../models/File.js";
 
 export interface IDatabaseOptions {
   enableVerboseMode: boolean;
 }
 
 export class FilesDatabase {
-  db: Database;
+  db: sqlite3.Database;
   options: IDatabaseOptions;
 
   constructor({ enableVerboseMode = false }: IDatabaseOptions) {
+    this.options = {
+      enableVerboseMode
+    };
     this.enableDebugMode(enableVerboseMode);
   }
 
-  private enableDebugMode(enableVerboseMode: boolean = false): void {
-    if (enableVerboseMode) verbose();
-    this.options.enableVerboseMode = enableVerboseMode;
+  private enableDebugMode(enableVerboseMode: boolean): void {
+    if (enableVerboseMode) sqlite3.verbose();
   }
 
   public connect(): void {
     const filepath = `./${FilesTableConstants.fileName}`;
-    this.db = new Database(filepath, this.errorCallback);
+    this.db = new sqlite3.Database(filepath, this.errorCallback);
     if (this.options.enableVerboseMode) console.log("Connected to SQLite3 successfully");
   }
 
@@ -64,14 +66,14 @@ export class FilesDatabase {
     if (this.options.enableVerboseMode) console.log("Files table created successfully");
   }
 
-  dropTable() {
+  public dropTable() {
     const query = FilesTableConstants.dropTableQuery;
 
     this.db.run(query, this.errorCallback);
     if (this.options.enableVerboseMode) console.log("Files table dropped successfully");
   }
 
-  insertRecord() {
+  public insertRecord() {
     const fieldValues = ["Resume", "File", "Resume for programming positions", "Paulo", "12mb", "123456", "today", "tomorrow"];
     const query = FilesTableConstants.insertRecordQuery;
 
@@ -79,7 +81,7 @@ export class FilesDatabase {
     if (this.options.enableVerboseMode) console.log("Inserted row into files table successfully");
   }
 
-  retrieveRecord() {
+  public retrieveRecord() {
     const query = FilesTableConstants.retrieveRecordQuery;
     const fieldValues = ["e0fa6eb3-1c42-43ba-892b-55819a86fb28"];
 
@@ -96,7 +98,7 @@ export class FilesDatabase {
     });
   }
 
-  retrieveAllRecords() {
+  public retrieveAllRecords() {
     const query = FilesTableConstants.retrieveAllRecordsQuery;
 
     this.db.all(query, [], (err, rows) => {
@@ -112,7 +114,7 @@ export class FilesDatabase {
     });
   }
 
-  updateRecord() {
+  public updateRecord() {
     const fieldValues = ["My Resume", 1];
     const query = FilesTableConstants.updateRecordQuery;
 
@@ -120,7 +122,7 @@ export class FilesDatabase {
     if (this.options.enableVerboseMode) console.log("Updated row from files table successfully");
   }
 
-  deleteRecord() {
+  public deleteRecord() {
     const fieldValues = [2];
     const query = FilesTableConstants.deleteRecordQuery;
 

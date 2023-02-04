@@ -1,9 +1,9 @@
 import * as express from "express";
-import UploadFilesController from "../controllers/UploadFilesController";
-import uploadSingleFileMiddleware from "../middlewares/uploadSingleFileMiddleware";
-// import uploadMultipleFilesMiddleware from "../middlewares/uploadMultipleFilesMiddleware";
+import { UploadFilesController } from "../controllers/UploadFilesController.js";
+import { uploadSingleFileMiddleware } from "../middlewares/uploadFilesMiddlewares.js";
+// import { uploadMultipleFilesMiddleware } from "../middlewares/uploadFilesMiddlewares.js";
 
-const filesRouter = express.Router();
+export const filesRouter = express.Router();
 const uploadFilesController = new UploadFilesController();
 
 filesRouter.get("/upload", uploadFilesController.show);
@@ -11,5 +11,3 @@ filesRouter.get("/upload", uploadFilesController.show);
 filesRouter.post("/share-link", uploadSingleFileMiddleware, uploadFilesController.create);
 
 filesRouter.get("/download/:filename", () => {});
-
-export default filesRouter;

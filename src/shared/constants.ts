@@ -49,7 +49,8 @@ const VIEWS = {
 }
 
 const FILE_STORAGE = {
-  formFieldName: "file"
+  formFieldName: "file",
+  maxFileCountAllowed: 1
 };
 
 export { APP, DIR, PATHS, SERVER, ROUTES, VIEWS, FILE_STORAGE };

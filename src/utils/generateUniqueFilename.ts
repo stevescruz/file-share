@@ -1,10 +1,8 @@
-import getFileExtension from "./getFileExtension";
+import { getFileExtension } from "./getFileExtension.js";
 
-function generateUniqueFilename(fileOriginalName, formFieldName) {
+export function generateUniqueFilename(fileOriginalName: string, formFieldName: string) {
   const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
     const extension = getFileExtension(fileOriginalName);
     const filename = formFieldName + '-' + uniqueSuffix + extension;
     return filename;
 }
-
-export default generateUniqueFilename;

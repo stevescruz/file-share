@@ -1,7 +1,5 @@
 import { extname } from "path";
 
-function getFileExtension(filename) {
+export function getFileExtension(filename: string) {
   return extname(filename).toLowerCase();
 }
-
-export default getFileExtension;
