@@ -1,6 +1,6 @@
-import dotenv from "dotenv";
+import * as dotenv from "dotenv";
 dotenv.config();
-import express from "express";
+import * as express from "express";
 
 import initDb from "./database/initDb";
 import filesRouter from "./routes/filesRoutes";

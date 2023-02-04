@@ -1,4 +1,4 @@
-import multer from "multer";
+import * as multer from "multer";
 
 import { PATHS } from "../shared/constants";
 import generateUniqueFilename from "./generateUniqueFilename";

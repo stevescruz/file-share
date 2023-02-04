@@ -1,4 +1,4 @@
-import multer from "multer";
+import * as multer from "multer";
 
 import fileStorage from "../utils/fileStorage";
 import fileFilter from "../utils/fileFilter";

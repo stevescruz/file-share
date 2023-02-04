@@ -1,4 +1,4 @@
-import express from "express";
+import * as express from "express";
 import UploadFilesController from "../controllers/UploadFilesController";
 import uploadSingleFileMiddleware from "../middlewares/uploadSingleFileMiddleware";
 // import uploadMultipleFilesMiddleware from "../middlewares/uploadMultipleFilesMiddleware";
