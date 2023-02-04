@@ -7,7 +7,7 @@
     "build": "tsc",
     "clean": "rimraf dist",
     "preserve": "npm run clean && npm run build",
-    "serve": "tsc -w && nodemon -w dist/server.js",
+    "serve": "concurrently --kill-others \"tsc -w\" \"nodemon -w dist/server.js\"",
     "prestart": "npm run clean && npm run build",
     "start": "node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
