@@ -1,7 +1,7 @@
-import FilesDatabase from "./FilesDatabase";
+import { FilesDatabase } from "./FilesDatabase";
 
 function initDb() {
-  const filesDb = new FilesDatabase({ verboseModeEnabled: true });
+  const filesDb = new FilesDatabase({ enableVerboseMode: true });
   filesDb.connect();
   filesDb.db.serialize(() => {
       filesDb.createTable();

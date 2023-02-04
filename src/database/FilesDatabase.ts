@@ -1,38 +1,37 @@
-import sqlite3 from 'sqlite3';
+import { Database, verbose } from "sqlite3";
+import { FilesTableConstants } from "./databaseConstants";
+import { File } from "../models/File";
 
-class FilesDatabase {
-  db;
-  verboseModeEnabled;
+export interface IDatabaseOptions {
+  enableVerboseMode: boolean;
+}
 
-  constructor({ verboseModeEnabled }) {
-    if (verboseModeEnabled) {
-      sqlite3.verbose();
-      this.verboseModeEnabled = verboseModeEnabled;
-    }
+export class FilesDatabase {
+  db: Database;
+  options: IDatabaseOptions;
+
+  constructor({ enableVerboseMode = false }: IDatabaseOptions) {
+    this.enableDebugMode(enableVerboseMode);
   }
 
-  connect() {
-    this.db = new sqlite3.Database("./files.db", err => {
-      if (err) {
-        console.error(err.message);
-        return;
-      }
-      if (this.verboseModeEnabled) console.log("Connected to SQLite3 successfully");
-    });
+  private enableDebugMode(enableVerboseMode: boolean = false): void {
+    if (enableVerboseMode) verbose();
+    this.options.enableVerboseMode = enableVerboseMode;
   }
 
-  disconnect() {
-    this.db.close(err => {
-      if (err) {
-        console.error(err.message);
-        return;
-      }
-      if (this.verboseModeEnabled) console.log("Closed connection to SQLite3 successfully");
-    });
+  public connect(): void {
+    const filepath = `./${FilesTableConstants.fileName}`;
+    this.db = new Database(filepath, this.errorCallback);
+    if (this.options.enableVerboseMode) console.log("Connected to SQLite3 successfully");
   }
 
-  createTable() {
-    const sql = `CREATE TABLE IF NOT EXISTS files (id TEXT PRIMARY KEY NOT NULL, name TEXT NOT NULL, content BLOB NOT NULL, description TEXT, author TEXT, size INTEGER, password TEXT, created_at INTEGER, updated_at INTEGER)`;
+  public disconnect(): void {
+    this.db.close(this.errorCallback);
+    if (this.options.enableVerboseMode) console.log("Closed connection to SQLite3 successfully");
+  }
+
+  public createTable() {
+    const query = FilesTableConstants.createTableQuery;
 
     // READ DOCUMENTATION: https://www.sqlite.org/docs.html
 
@@ -61,52 +60,36 @@ class FilesDatabase {
     */
     //DATES
     // Built-in functions
-    this.db.run(sql, err => {
-      if (err) {
-        console.error(err.message);
-        return;
-      }
-      if (this.verboseModeEnabled) console.log("Files table created successfully");
-    });
+    this.db.run(query, this.errorCallback);
+    if (this.options.enableVerboseMode) console.log("Files table created successfully");
   }
 
   dropTable() {
-    const sql = `DROP TABLE IF EXISTS files`;
-    this.db.run(sql, err => {
-      if (err) {
-        console.error(err.message);
-        return;
-      }
-      if (this.verboseModeEnabled) console.log("Files table dropped successfully");
-    });
+    const query = FilesTableConstants.dropTableQuery;
+
+    this.db.run(query, this.errorCallback);
+    if (this.options.enableVerboseMode) console.log("Files table dropped successfully");
   }
 
   insertRecord() {
-    const queryParameters = ["Resume", "File", "Resume for programming positions", "Paulo", "12mb", "123456", "today", "tomorrow"];
-    const sql = `INSERT INTO files (name, content, description, author, size, password, created_at, updated_at)
-              VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+    const fieldValues = ["Resume", "File", "Resume for programming positions", "Paulo", "12mb", "123456", "today", "tomorrow"];
+    const query = FilesTableConstants.insertRecordQuery;
 
-    this.db.run(sql, queryParameters, (err) => {
-      if (err) {
-        console.error(err.message);
-        return;
-      } else {
-        if (this.verboseModeEnabled) console.log("Inserted row into files table successfully");
-      }
-    });
+    this.db.run(query, fieldValues, this.errorCallback);
+    if (this.options.enableVerboseMode) console.log("Inserted row into files table successfully");
   }
 
   retrieveRecord() {
-    const sql = `SELECT * FROM files WHERE id = ?`;
-    const queryParameter = "e0fa6eb3-1c42-43ba-892b-55819a86fb28"
+    const query = FilesTableConstants.retrieveRecordQuery;
+    const fieldValues = ["e0fa6eb3-1c42-43ba-892b-55819a86fb28"];
 
-    this.db.get(sql, [], (err, rows) => {
+    this.db.get(query, fieldValues, (err, rows) => {
       if (err) {
         console.error(err.message);
         return;
       } else {
-        if (this.verboseModeEnabled) console.log("Retrieved rows from files table successfully");
-        rows.forEach(row => {
+        if (this.options.enableVerboseMode) console.log("Retrieved rows from files table successfully");
+        rows.forEach((row: File) => {
           console.log(row);
         });
       }
@@ -114,15 +97,15 @@ class FilesDatabase {
   }
 
   retrieveAllRecords() {
-    const sql = `SELECT * FROM files`;
+    const query = FilesTableConstants.retrieveAllRecordsQuery;
 
-    this.db.all(sql, [], (err, rows) => {
+    this.db.all(query, [], (err, rows) => {
       if (err) {
         console.error(err.message);
         return;
       } else {
-        if (this.verboseModeEnabled) console.log("Retrieved rows from files table successfully");
-        rows.forEach(row => {
+        if (this.options.enableVerboseMode) console.log("Retrieved rows from files table successfully");
+        rows.forEach((row: File) => {
           console.log(row);
         });
       }
@@ -130,32 +113,22 @@ class FilesDatabase {
   }
 
   updateRecord() {
-    const queryParameters = ["My Resume", 1];
-    const sql = `UPDATE files SET name = ? WHERE id = ?`;
+    const fieldValues = ["My Resume", 1];
+    const query = FilesTableConstants.updateRecordQuery;
 
-    this.db.run(sql, queryParameters, (err) => {
-      if (err) {
-        console.error(err.message);
-        return;
-      } else {
-        if (this.verboseModeEnabled) console.log("Updated row from files table successfully");
-      }
-    });
+    this.db.run(query, fieldValues, this.errorCallback);
+    if (this.options.enableVerboseMode) console.log("Updated row from files table successfully");
   }
 
   deleteRecord() {
-    const queryParameters = [2];
-    const sql = `DELETE FROM files WHERE id = ?`;
+    const fieldValues = [2];
+    const query = FilesTableConstants.deleteRecordQuery;
 
-    this.db.run(sql, queryParameters, (err) => {
-      if (err) {
-        console.error(err.message);
-        return;
-      } else {
-        if (this.verboseModeEnabled) console.log("Deleted row from files table successfully");
-      }
-    });
+    this.db.run(query, fieldValues, this.errorCallback);
+    if (this.options.enableVerboseMode) console.log("Deleted row from files table successfully");
+  }
+
+  private errorCallback(err: Error) {
+    if (err) console.error(err.message);
   }
 }
-
-export default FilesDatabase;
