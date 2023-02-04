@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { APP, ROUTES, VIEWS } from "../shared/constants";
+import { APP, ROUTES, VIEWS } from "../shared/constants.js";
 
 interface IRequest extends Request {
   file: Express.Multer.File;
 }
 
-class UploadFilesController {
+export class UploadFilesController {
   async create(req: Request, res: Response) {
     const { file } = req as IRequest;
     // const { password } = req.body;
@@ -28,5 +28,3 @@ class UploadFilesController {
     });
   }
 }
-
-export default UploadFilesController;
