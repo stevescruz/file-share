@@ -6,11 +6,14 @@
   "scripts": {
     "build": "tsc",
     "clean": "rimraf dist",
-    "preserve": "npm run clean && npm run build",
-    "serve": "concurrently --kill-others \"tsc -w\" \"nodemon -w dist/server.js\"",
-    "prestart": "npm run clean && npm run build",
+    "copy-assets": "copyfiles -u 1 src/views/**/*.ejs dist/",
+    "preserve": "npm run clean && npm run build && npm run copy-assets",
+    "serve": "concurrently --kill-others \"tsc -w\" \"npm run watch:ts-ejs\"",
+    "prestart": "npm run clean && npm run build && npm run copy-assets",
     "start": "node dist/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch:ts-ejs": "nodemon -w src -e ts,ejs --delay 1.5 --exec \"npm run copy-assets && npm run delay && node dist/server.js\"",
+    "delay": "node -e \"setTimeout(()=>{}, 2500)\""
   },
   "type": "module",
   "author": "",
