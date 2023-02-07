@@ -8,6 +8,10 @@ const uploadFilesController = new UploadFilesController();
 
 filesRouter.get("/upload", uploadFilesController.show);
 
-filesRouter.post("/share-link", uploadSingleFileMiddleware, uploadFilesController.create);
+filesRouter.post(
+  "/share-link",
+  uploadSingleFileMiddleware,
+  uploadFilesController.create,
+);
 
 filesRouter.get("/download/:filename", () => {});

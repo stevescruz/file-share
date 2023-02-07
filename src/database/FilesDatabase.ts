@@ -12,7 +12,7 @@ export class FilesDatabase {
 
   constructor({ enableVerboseMode = false }: IDatabaseOptions) {
     this.options = {
-      enableVerboseMode
+      enableVerboseMode,
     };
     this.enableDebugMode(enableVerboseMode);
   }
@@ -24,12 +24,14 @@ export class FilesDatabase {
   public connect(): void {
     const filepath = `./${FilesTableConstants.fileName}`;
     this.db = new sqlite3.Database(filepath, this.errorCallback);
-    if (this.options.enableVerboseMode) console.log("Connected to SQLite3 successfully");
+    if (this.options.enableVerboseMode)
+      console.log("Connected to SQLite3 successfully");
   }
 
   public disconnect(): void {
     this.db.close(this.errorCallback);
-    if (this.options.enableVerboseMode) console.log("Closed connection to SQLite3 successfully");
+    if (this.options.enableVerboseMode)
+      console.log("Closed connection to SQLite3 successfully");
   }
 
   public createTable() {
@@ -63,22 +65,34 @@ export class FilesDatabase {
     //DATES
     // Built-in functions
     this.db.run(query, this.errorCallback);
-    if (this.options.enableVerboseMode) console.log("Files table created successfully");
+    if (this.options.enableVerboseMode)
+      console.log("Files table created successfully");
   }
 
   public dropTable() {
     const query = FilesTableConstants.dropTableQuery;
 
     this.db.run(query, this.errorCallback);
-    if (this.options.enableVerboseMode) console.log("Files table dropped successfully");
+    if (this.options.enableVerboseMode)
+      console.log("Files table dropped successfully");
   }
 
   public insertRecord() {
-    const fieldValues = ["Resume", "File", "Resume for programming positions", "Paulo", "12mb", "123456", "today", "tomorrow"];
+    const fieldValues = [
+      "Resume",
+      "File",
+      "Resume for programming positions",
+      "Paulo",
+      "12mb",
+      "123456",
+      "today",
+      "tomorrow",
+    ];
     const query = FilesTableConstants.insertRecordQuery;
 
     this.db.run(query, fieldValues, this.errorCallback);
-    if (this.options.enableVerboseMode) console.log("Inserted row into files table successfully");
+    if (this.options.enableVerboseMode)
+      console.log("Inserted row into files table successfully");
   }
 
   public retrieveRecord() {
@@ -90,7 +104,8 @@ export class FilesDatabase {
         console.error(err.message);
         return;
       } else {
-        if (this.options.enableVerboseMode) console.log("Retrieved rows from files table successfully");
+        if (this.options.enableVerboseMode)
+          console.log("Retrieved rows from files table successfully");
         console.log("row:", row);
       }
     });
@@ -105,8 +120,9 @@ export class FilesDatabase {
         console.error(err.message);
         return;
       } else {
-        if (this.options.enableVerboseMode) console.log("Retrieved rows from files table successfully");
-        rows.forEach((row) => {
+        if (this.options.enableVerboseMode)
+          console.log("Retrieved rows from files table successfully");
+        rows.forEach(row => {
           console.log("row:", row);
         });
       }
@@ -118,7 +134,8 @@ export class FilesDatabase {
     const query = FilesTableConstants.updateRecordQuery;
 
     this.db.run(query, fieldValues, this.errorCallback);
-    if (this.options.enableVerboseMode) console.log("Updated row from files table successfully");
+    if (this.options.enableVerboseMode)
+      console.log("Updated row from files table successfully");
   }
 
   public deleteRecord() {
@@ -126,7 +143,8 @@ export class FilesDatabase {
     const query = FilesTableConstants.deleteRecordQuery;
 
     this.db.run(query, fieldValues, this.errorCallback);
-    if (this.options.enableVerboseMode) console.log("Deleted row from files table successfully");
+    if (this.options.enableVerboseMode)
+      console.log("Deleted row from files table successfully");
   }
 
   private errorCallback(err: Error) {

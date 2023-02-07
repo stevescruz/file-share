@@ -2,7 +2,7 @@ import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 
 const APP = {
-  url: "http://127.0.0.1:3000"
+  url: "http://127.0.0.1:3000",
 };
 
 const DIR = {
@@ -17,7 +17,7 @@ const DIR = {
 
 const SERVER = {
   defaultTemplateEngine: "ejs",
-}
+};
 
 /*
   Workaround for __dirname is not defined when loading file as an ECMAScript module
@@ -33,24 +33,24 @@ const PATHS = {
   toImgDir: join(__dirname, "../..", DIR.public, DIR.img),
   toSoundsDir: join(__dirname, "../..", DIR.public, DIR.sounds),
   toUploadsDir: join(__dirname, "../..", DIR.public, DIR.uploads),
-  toViewsDir: join(__dirname, "..", DIR.views)
-}
+  toViewsDir: join(__dirname, "..", DIR.views),
+};
 
 const ROUTES = {
   files: "/files",
   upload: "/upload",
   download: "/download",
-}
+};
 
 const VIEWS = {
   fileDownload: "filedownload",
   fileUpload: "fileupload",
-  shareLink: "sharelink"
-}
+  shareLink: "sharelink",
+};
 
 const FILE_STORAGE = {
   formFieldName: "file",
-  maxFileCountAllowed: 1
+  maxFileCountAllowed: 1,
 };
 
 export { APP, DIR, PATHS, SERVER, ROUTES, VIEWS, FILE_STORAGE };
