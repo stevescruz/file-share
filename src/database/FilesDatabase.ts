@@ -85,30 +85,29 @@ export class FilesDatabase {
     const query = FilesTableConstants.retrieveRecordQuery;
     const fieldValues = ["e0fa6eb3-1c42-43ba-892b-55819a86fb28"];
 
-    this.db.get(query, fieldValues, (err, rows) => {
+    this.db.get(query, fieldValues, (err, row: File) => {
       if (err) {
         console.error(err.message);
         return;
       } else {
         if (this.options.enableVerboseMode) console.log("Retrieved rows from files table successfully");
-        rows.forEach((row: File) => {
-          console.log(row);
-        });
+        console.log("row:", row);
       }
     });
   }
 
+  // Note that Databae.all() first retrieves all result rows and stores them in memory. For queries that have potentially large result sets, use the Database.each() function to retrieve all rows or Database.prepare() followed by multiple Statement.get() calls to retrieve a previously unknown amount of rows.
   public retrieveAllRecords() {
     const query = FilesTableConstants.retrieveAllRecordsQuery;
 
-    this.db.all(query, [], (err, rows) => {
+    this.db.all(query, [], (err, rows: File[]) => {
       if (err) {
         console.error(err.message);
         return;
       } else {
         if (this.options.enableVerboseMode) console.log("Retrieved rows from files table successfully");
-        rows.forEach((row: File) => {
-          console.log(row);
+        rows.forEach((row) => {
+          console.log("row:", row);
         });
       }
     });

@@ -1,4 +1,3 @@
-
 export interface IRepository {
   create(): Promise<any>;
   deleteById(): Promise<any | undefined>;
