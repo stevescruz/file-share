@@ -8,7 +8,8 @@
   "extends": [
     "airbnb-base",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:require-extensions/recommended"
   ],
   "globals": {
     "Atomics": "readonly",
@@ -16,22 +17,74 @@
   },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 2018,
-    "sourceType": "module"
+    "ecmaVersion": 2020,
+    "sourceType": "node"
   },
   "plugins": [
     "@typescript-eslint",
-    "prettier"
+    "prettier",
+    "require-extensions"
   ],
   "rules": {
     "prettier/prettier": "error",
     "class-methods-use-this": "off",
     "no-useless-constructor": "off",
     "@typescript-eslint/camelcase": "off",
-    "@typescript-eslint/no-unused-vars": ["error", {
-      "argsIgnorePattern": "_$"
-    }],
-    "@typescript-eslint/interface-name-prefix": ["error", { "prefixWithI": "always" }],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "_$"
+      }
+    ],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "default",
+        "format": [
+          "camelCase",
+          "UPPER_CASE"
+        ]
+      },
+      {
+        "selector": "variable",
+        "format": [
+          "camelCase",
+          "snake_case"
+        ]
+      },
+      {
+        "selector": "parameter",
+        "format": [
+          "camelCase",
+          "snake_case"
+        ],
+        "leadingUnderscore": "allow"
+      },
+      {
+        "selector": "typeLike",
+        "format": [
+          "PascalCase"
+        ]
+      },
+      {
+        "selector": "property",
+        "format": [
+          "camelCase",
+          "snake_case"
+        ]
+      },
+      {
+        "selector": "interface",
+        "format": [
+          "PascalCase"
+        ],
+        "custom": {
+          "regex": "^I[A-Z]",
+          "match": true
+        }
+      }
+    ],
+    "import/no-unresolved": "off",
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -39,10 +92,5 @@
         "ts": "never"
       }
     ]
-  },
-  "settings": {
-    "import/resolver": {
-      "typescript": {}
-    }
   }
 }
