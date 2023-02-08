@@ -45,9 +45,9 @@ export enum ROUTES {
 }
 
 export enum VIEWS {
-  fileDownload = "filedownload",
-  fileUpload = "fileupload",
-  shareLink = "sharelink",
+  fileDownload = "file-download",
+  fileUpload = "file-upload",
+  shareLink = "share-link",
 }
 
 export enum FILE_STORAGE {

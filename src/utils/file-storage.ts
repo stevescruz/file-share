@@ -2,7 +2,7 @@ import { Request } from "express";
 import * as multer from "multer";
 
 import { PATHS } from "../shared/constants.js";
-import generateUniqueFilename from "./generateUniqueFilename.js";
+import generateUniqueFilename from "./generate-unique-filename.js";
 
 const diskStorageOptions: multer.DiskStorageOptions = {
   destination: PATHS.toUploadsDir,

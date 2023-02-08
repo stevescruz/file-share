@@ -1,6 +1,7 @@
 import { Request } from "express";
 import { FileFilterCallback } from "multer";
-import getFileExtension from "./getFileExtension.js";
+
+import getFileExtension from "./get-file-extension.js";
 
 export default function fileFilter(
   _req: Request,

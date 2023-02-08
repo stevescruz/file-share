@@ -1,7 +1,7 @@
 import multer from "multer";
 import { FILE_STORAGE } from "../shared/constants.js";
-import fileFilter from "../utils/fileFilter.js";
-import fileStorage from "../utils/fileStorage.js";
+import fileFilter from "../utils/file-filter.js";
+import fileStorage from "../utils/file-storage.js";
 
 const multerOptions: multer.Options = {
   storage: fileStorage,

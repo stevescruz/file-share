@@ -1,7 +1,7 @@
 import * as express from "express";
-import UploadFilesController from "../controllers/UploadFilesController.js";
-import { uploadSingleFileMiddleware } from "../middlewares/uploadFilesMiddlewares.js";
-// import { uploadMultipleFilesMiddleware } from "../middlewares/uploadFilesMiddlewares.js";
+import UploadFilesController from "../controllers/upload-files-controller.js";
+import { uploadSingleFileMiddleware } from "../middlewares/upload-files-middlewares.js";
+// import { uploadMultipleFilesMiddleware } from "../middlewares/upload-files-middlewares.js";
 
 const filesRouter = express.Router();
 const uploadFilesController = new UploadFilesController();

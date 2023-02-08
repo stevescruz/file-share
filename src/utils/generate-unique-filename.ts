@@ -1,4 +1,4 @@
-import getFileExtension from "./getFileExtension.js";
+import getFileExtension from "./get-file-extension.js";
 
 export default function generateUniqueFilename(
   fileOriginalName: string,

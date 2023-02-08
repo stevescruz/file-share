@@ -1,4 +1,4 @@
-import { FilesDatabase } from "./FilesDatabase.js";
+import { FilesDatabase } from "./files-database.js";
 
 export default function initDb() {
   const filesDb = new FilesDatabase({ enableVerboseMode: true });

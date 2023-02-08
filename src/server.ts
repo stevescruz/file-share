@@ -2,8 +2,8 @@ import dotenv from "dotenv";
 import express from "express";
 
 import { DIR, PATHS, SERVER, ROUTES } from "./shared/constants.js";
-import initDb from "./database/initDb.js";
-import filesRouter from "./routes/filesRoutes.js";
+import initDb from "./database/init-db.js";
+import filesRouter from "./routes/files-routes.js";
 
 dotenv.config();
 

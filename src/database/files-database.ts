@@ -1,6 +1,6 @@
 import sqlite3 from "sqlite3";
-import FILES_TABLE_CONSTANTS from "./FilesTableConstants.js";
-import File from "../models/File.js";
+import FILES_TABLE_CONSTANTS from "./files-table-constants.js";
+import File from "../models/file.js";
 
 export interface IDatabaseOptions {
   enableVerboseMode: boolean;
