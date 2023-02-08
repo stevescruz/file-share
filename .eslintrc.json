@@ -18,7 +18,10 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2020,
-    "sourceType": "node"
+    "sourceType": "node",
+    "project": [
+      "./tsconfig.json"
+    ]
   },
   "plugins": [
     "@typescript-eslint",
@@ -27,8 +30,8 @@
   ],
   "rules": {
     "prettier/prettier": "error",
-    "class-methods-use-this": "off",
-    "no-useless-constructor": "off",
+    "class-methods-use-this": "warn",
+    "no-useless-constructor": "error",
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/no-unused-vars": [
       "error",
@@ -48,15 +51,62 @@
       {
         "selector": "variable",
         "format": [
+          "camelCase"
+        ]
+      },
+      {
+        "selector": "variable",
+        "modifiers": [
+          "const",
+          "exported"
+        ],
+        "format": [
           "camelCase",
-          "snake_case"
+          "UPPER_CASE"
+        ]
+      },
+      {
+        "selector": "variable",
+        "types": [
+          "boolean"
+        ],
+        "format": [
+          "PascalCase"
+        ],
+        "prefix": [
+          "is",
+          "should",
+          "has",
+          "can",
+          "did",
+          "will"
+        ]
+      },
+      {
+        "selector": "property",
+        "format": [
+          "camelCase"
+        ]
+      },
+      {
+        "selector": "function",
+        "format": [
+          "camelCase"
         ]
       },
       {
         "selector": "parameter",
         "format": [
-          "camelCase",
-          "snake_case"
+          "camelCase"
+        ]
+      },
+      {
+        "selector": "parameter",
+        "modifiers": [
+          "unused"
+        ],
+        "format": [
+          "camelCase"
         ],
         "leadingUnderscore": "allow"
       },
@@ -64,13 +114,6 @@
         "selector": "typeLike",
         "format": [
           "PascalCase"
-        ]
-      },
-      {
-        "selector": "property",
-        "format": [
-          "camelCase",
-          "snake_case"
         ]
       },
       {
@@ -82,8 +125,29 @@
           "regex": "^I[A-Z]",
           "match": true
         }
+      },
+      {
+        "selector": "enum",
+        "format": [
+          "UPPER_CASE"
+        ]
+      },
+      {
+        "selector": "enumMember",
+        "format": [
+          "camelCase"
+        ]
       }
     ],
+    "lines-between-class-members": [
+      "error",
+      "always",
+      {
+        "exceptAfterSingleLine": true
+      }
+    ],
+    "no-shadow": "off", // replaced by ts-eslint rule below
+    "@typescript-eslint/no-shadow": "error",
     "import/no-unresolved": "off",
     "import/extensions": [
       "error",
