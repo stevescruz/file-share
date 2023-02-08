@@ -5,8 +5,8 @@ interface IRequest extends Request {
   file: Express.Multer.File;
 }
 
-export class UploadFilesController {
-  async create(req: Request, res: Response) {
+export default class UploadFilesController {
+  public async create(req: Request, res: Response) {
     const { file } = req as IRequest;
     // const { password } = req.body;
 
@@ -17,11 +17,11 @@ export class UploadFilesController {
     const shareUrl = `${APP.url}${ROUTES.files}${ROUTES.download}/${file.filename}`;
 
     res.render(VIEWS.shareLink, {
-      shareUrl: shareUrl,
+      shareUrl,
     });
   }
 
-  show(req: Request, res: Response) {
+  public show(req: Request, res: Response) {
     res.render(VIEWS.fileUpload, {
       shareUrl: "null",
       didUploadSucceed: true,

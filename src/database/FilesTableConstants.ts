@@ -1,4 +1,4 @@
-export enum FilesTableConstants {
+enum FILES_TABLE_CONSTANTS {
   fileName = "files.db",
   createTableQuery = `CREATE TABLE IF NOT EXISTS files (
     id TEXT PRIMARY KEY NOT NULL,
@@ -27,3 +27,5 @@ export enum FilesTableConstants {
   updateRecordQuery = `UPDATE files SET name = ? WHERE id = ?`,
   deleteRecordQuery = `DELETE FROM files WHERE id = ?`,
 }
+
+export default FILES_TABLE_CONSTANTS;

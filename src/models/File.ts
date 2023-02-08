@@ -1,4 +1,4 @@
-export class File {
+export default class File {
   id: string;
   name: string;
   content: string;
@@ -8,18 +8,18 @@ export class File {
   password: string;
   createdAt: Date;
   updatedAt: Date;
-
   static readonly entityLogicalName: string = "file";
-  static readonly AttributeId: string = "id";
-  static readonly AttributeName: string = "name";
-  static readonly AttributeContent: string = "content";
-  static readonly AttributeDescription: string = "description";
-  static readonly AttributeAuthor: string = "author";
-  static readonly AttributeSize: string = "size";
-  static readonly AttributePassword: string = "password";
-  static readonly AttributeCreatedAt: string = "created_at";
-  static readonly AttributeUpdatedAt: string = "updated_at";
+  static readonly attributeId: string = "id";
+  static readonly attributeName: string = "name";
 
+  static readonly attributeContent: string = "content";
+  static readonly attributeDescription: string = "description";
+  static readonly attributeAuthor: string = "author";
+  static readonly attributeSize: string = "size";
+  static readonly attributePassword: string = "password";
+  static readonly attributeCreatedAt: string = "created_at";
+
+  static readonly attributeUpdatedAt: string = "updated_at";
   constructor(file: File) {
     this.id = file.id;
     this.name = file.name;

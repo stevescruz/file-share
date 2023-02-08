@@ -1,6 +1,6 @@
 import { FilesDatabase } from "./FilesDatabase.js";
 
-export function initDb() {
+export default function initDb() {
   const filesDb = new FilesDatabase({ enableVerboseMode: true });
   filesDb.connect();
   filesDb.db.serialize(() => {

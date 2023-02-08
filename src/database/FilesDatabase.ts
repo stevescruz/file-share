@@ -1,6 +1,6 @@
 import sqlite3 from "sqlite3";
-import { FilesTableConstants } from "./databaseConstants.js";
-import { File } from "../models/File.js";
+import FILES_TABLE_CONSTANTS from "./FilesTableConstants.js";
+import File from "../models/File.js";
 
 export interface IDatabaseOptions {
   enableVerboseMode: boolean;
@@ -22,7 +22,7 @@ export class FilesDatabase {
   }
 
   public connect(): void {
-    const filepath = `./${FilesTableConstants.fileName}`;
+    const filepath = `./${FILES_TABLE_CONSTANTS.fileName}`;
     this.db = new sqlite3.Database(filepath, this.errorCallback);
     if (this.options.enableVerboseMode)
       console.log("Connected to SQLite3 successfully");
@@ -35,7 +35,7 @@ export class FilesDatabase {
   }
 
   public createTable() {
-    const query = FilesTableConstants.createTableQuery;
+    const query = FILES_TABLE_CONSTANTS.createTableQuery;
 
     // READ DOCUMENTATION: https://www.sqlite.org/docs.html
 
@@ -62,7 +62,7 @@ export class FilesDatabase {
       INNER JOIN TABLE2
       ON table1.column = table2.column
     */
-    //DATES
+    // DATES
     // Built-in functions
     this.db.run(query, this.errorCallback);
     if (this.options.enableVerboseMode)
@@ -70,7 +70,7 @@ export class FilesDatabase {
   }
 
   public dropTable() {
-    const query = FilesTableConstants.dropTableQuery;
+    const query = FILES_TABLE_CONSTANTS.dropTableQuery;
 
     this.db.run(query, this.errorCallback);
     if (this.options.enableVerboseMode)
@@ -88,7 +88,7 @@ export class FilesDatabase {
       "today",
       "tomorrow",
     ];
-    const query = FilesTableConstants.insertRecordQuery;
+    const query = FILES_TABLE_CONSTANTS.insertRecordQuery;
 
     this.db.run(query, fieldValues, this.errorCallback);
     if (this.options.enableVerboseMode)
@@ -96,13 +96,12 @@ export class FilesDatabase {
   }
 
   public retrieveRecord() {
-    const query = FilesTableConstants.retrieveRecordQuery;
+    const query = FILES_TABLE_CONSTANTS.retrieveRecordQuery;
     const fieldValues = ["e0fa6eb3-1c42-43ba-892b-55819a86fb28"];
 
     this.db.get(query, fieldValues, (err, row: File) => {
       if (err) {
         console.error(err.message);
-        return;
       } else {
         if (this.options.enableVerboseMode)
           console.log("Retrieved rows from files table successfully");
@@ -113,12 +112,11 @@ export class FilesDatabase {
 
   // Note that Databae.all() first retrieves all result rows and stores them in memory. For queries that have potentially large result sets, use the Database.each() function to retrieve all rows or Database.prepare() followed by multiple Statement.get() calls to retrieve a previously unknown amount of rows.
   public retrieveAllRecords() {
-    const query = FilesTableConstants.retrieveAllRecordsQuery;
+    const query = FILES_TABLE_CONSTANTS.retrieveAllRecordsQuery;
 
     this.db.all(query, [], (err, rows: File[]) => {
       if (err) {
         console.error(err.message);
-        return;
       } else {
         if (this.options.enableVerboseMode)
           console.log("Retrieved rows from files table successfully");
@@ -131,7 +129,7 @@ export class FilesDatabase {
 
   public updateRecord() {
     const fieldValues = ["My Resume", 1];
-    const query = FilesTableConstants.updateRecordQuery;
+    const query = FILES_TABLE_CONSTANTS.updateRecordQuery;
 
     this.db.run(query, fieldValues, this.errorCallback);
     if (this.options.enableVerboseMode)
@@ -140,7 +138,7 @@ export class FilesDatabase {
 
   public deleteRecord() {
     const fieldValues = [2];
-    const query = FilesTableConstants.deleteRecordQuery;
+    const query = FILES_TABLE_CONSTANTS.deleteRecordQuery;
 
     this.db.run(query, fieldValues, this.errorCallback);
     if (this.options.enableVerboseMode)

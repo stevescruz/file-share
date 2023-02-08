@@ -1,10 +1,11 @@
 import dotenv from "dotenv";
-dotenv.config();
 import express from "express";
 
 import { DIR, PATHS, SERVER, ROUTES } from "./shared/constants.js";
-import { initDb } from "./database/initDb.js";
-import { filesRouter } from "./routes/filesRoutes.js";
+import initDb from "./database/initDb.js";
+import filesRouter from "./routes/filesRoutes.js";
+
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT;

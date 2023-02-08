@@ -2,7 +2,7 @@ import { Request } from "express";
 import * as multer from "multer";
 
 import { PATHS } from "../shared/constants.js";
-import { generateUniqueFilename } from "./generateUniqueFilename.js";
+import generateUniqueFilename from "./generateUniqueFilename.js";
 
 const diskStorageOptions: multer.DiskStorageOptions = {
   destination: PATHS.toUploadsDir,
@@ -15,4 +15,5 @@ const diskStorageOptions: multer.DiskStorageOptions = {
   },
 };
 
-export const fileStorage = multer.diskStorage(diskStorageOptions);
+const fileStorage = multer.diskStorage(diskStorageOptions);
+export default fileStorage;
