@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "prettier-format": "prettier --config .prettierrc.json \"src/**/*.ts\" --write",
-    "lint": "eslint . --ext .ts",
+    "lint": "eslint --quiet . --ext .ts",
     "build": "tsc",
     "clean": "rimraf dist",
     "copy-assets": "copyfiles -u 1 src/views/**/*.ejs dist/",
