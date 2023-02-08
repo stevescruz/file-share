@@ -7,12 +7,12 @@ export default function fileFilter(
   file: Express.Multer.File,
   callback: FileFilterCallback,
 ) {
-  const extension =
+  const isExtension =
     [".png", ".jpg", ".jpeg"].indexOf(getFileExtension(file.originalname)) >= 0;
-  const mimeType =
+  const isMimeType =
     ["image/png", "image/jpg", "image/jpeg"].indexOf(file.mimetype) >= 0;
 
-  if (extension && mimeType) {
+  if (isExtension && isMimeType) {
     callback(null, true);
   } else {
     callback(
