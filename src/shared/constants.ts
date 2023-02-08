@@ -1,56 +1,56 @@
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 
-const APP = {
-  url: "http://127.0.0.1:3000",
-};
+export enum APP {
+  url = "http://127.0.0.1:3000",
+}
 
-const DIR = {
-  public: "/public",
-  css: "/css",
-  js: "/js",
-  img: "/img",
-  sounds: "/sounds",
-  uploads: "/uploads",
-  views: "/views",
-};
+export enum DIR {
+  public = "/public",
+  css = "/css",
+  js = "/js",
+  img = "/img",
+  sounds = "/sounds",
+  uploads = "/uploads",
+  views = "/views",
+}
 
-const SERVER = {
-  defaultTemplateEngine: "ejs",
-};
+export enum SERVER {
+  defaultTemplateEngine = "ejs",
+}
 
 /*
-  Workaround for __dirname is not defined when loading file as an ECMAScript module
+  Workaround for directoryname is not defined when loading file as an ECMAScript module
   READ: https://stackoverflow.com/questions/64383909/dirname-is-not-defined-in-node-14-version
   READ: https://github.com/nodejs/help/issues/2907#issuecomment-757446568
 */
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const PATHS = {
-  toPublicDir: join(__dirname, "../..", DIR.public),
-  toCssDir: join(__dirname, "../..", DIR.public, DIR.css),
-  toJsDir: join(__dirname, "../..", DIR.public, DIR.js),
-  toImgDir: join(__dirname, "../..", DIR.public, DIR.img),
-  toSoundsDir: join(__dirname, "../..", DIR.public, DIR.sounds),
-  toUploadsDir: join(__dirname, "../..", DIR.public, DIR.uploads),
-  toViewsDir: join(__dirname, "..", DIR.views),
+const filename = fileURLToPath(import.meta.url);
+const directoryname = dirname(filename);
+const publicDir = join(directoryname, "../..", DIR.public);
+
+export const PATHS = {
+  toPublicDir: publicDir,
+  toCssDir: join(directoryname, "../..", DIR.public, DIR.css),
+  toJsDir: join(directoryname, "../..", DIR.public, DIR.js),
+  toImgDir: join(directoryname, "../..", DIR.public, DIR.img),
+  toSoundsDir: join(directoryname, "../..", DIR.public, DIR.sounds),
+  toUploadsDir: join(directoryname, "../..", DIR.public, DIR.uploads),
+  toViewsDir: join(directoryname, "..", DIR.views),
 };
 
-const ROUTES = {
-  files: "/files",
-  upload: "/upload",
-  download: "/download",
-};
+export enum ROUTES {
+  files = "/files",
+  upload = "/upload",
+  download = "/download",
+}
 
-const VIEWS = {
-  fileDownload: "filedownload",
-  fileUpload: "fileupload",
-  shareLink: "sharelink",
-};
+export enum VIEWS {
+  fileDownload = "filedownload",
+  fileUpload = "fileupload",
+  shareLink = "sharelink",
+}
 
-const FILE_STORAGE = {
-  formFieldName: "file",
-  maxFileCountAllowed: 1,
-};
-
-export { APP, DIR, PATHS, SERVER, ROUTES, VIEWS, FILE_STORAGE };
+export enum FILE_STORAGE {
+  formFieldName = "file",
+  maxFileCountAllowed = 1,
+}
