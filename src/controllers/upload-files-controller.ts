@@ -1,30 +1,28 @@
-import { Request, Response } from "express";
+import IFileRequest from "../common/interfaces/IFileRequest.js";
+import IFileResponse from "../common/interfaces/IFileResponse.js";
 import { APP, ROUTES, VIEWS } from "../shared/constants.js";
 
-interface IRequest extends Request {
-  file: Express.Multer.File;
-}
-
 export default class UploadFilesController {
-  public async create(req: Request, res: Response) {
-    const { file } = req as IRequest;
+  public async create(req: IFileRequest, res: IFileResponse) {
+    const { file } = req;
     // const { password } = req.body;
 
-    console.log("file metadata:");
-    console.table(file);
-    console.log(req.body);
+    let shareUrl = null;
 
-    const shareUrl = `${APP.url}${ROUTES.files}${ROUTES.download}/${file.filename}`;
+    if (file) {
+      console.log("file metadata:");
+      console.table(file);
+      console.log(req.body);
+
+      shareUrl = `${APP.url}${ROUTES.files}${ROUTES.download}/${file.filename}`;
+    }
 
     res.render(VIEWS.shareLink, {
       shareUrl,
     });
   }
 
-  public show(req: Request, res: Response) {
-    res.render(VIEWS.fileUpload, {
-      shareUrl: "null",
-      didUploadSucceed: true,
-    });
+  public show(_req: IFileRequest, res: IFileResponse) {
+    res.render(VIEWS.fileUpload);
   }
 }
