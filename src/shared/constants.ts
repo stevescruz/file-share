@@ -36,7 +36,7 @@ export const PATHS = {
   toSoundsDir: join(directoryname, "../..", DIR.public, DIR.sounds),
   toUploadsDir: join(directoryname, "../..", DIR.public, DIR.uploads),
   toViewsDir: join(directoryname, "..", DIR.views),
-};
+} as const;
 
 export enum ROUTES {
   files = "/files",
